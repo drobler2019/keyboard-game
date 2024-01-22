@@ -1,7 +1,8 @@
 import { keys } from "../presentation/keyboard/keyboard";
-import { textContent } from "./TextService";
+import { TextService } from "./TextService";
 
 let keyboard = null;
+let textService = null;
 
 export const keydownEvent = (element) => {
 
@@ -9,8 +10,13 @@ export const keydownEvent = (element) => {
     const capsLock = document.querySelector('.capsLock');
     const containerText = capsLock.nextElementSibling;
 
+    if (!textService) {
+        textService = new TextService(containerText);
+    }
+
+
     document.addEventListener('keydown', (event) => {
-        
+
         const { key, code } = event;
 
         if (code === 'CapsLock') {
@@ -21,7 +27,7 @@ export const keydownEvent = (element) => {
         if (!tecla) return;
         tecla.classList.add('presionar');
         document.addEventListener('keyup', () => tecla.classList.remove('presionar'));
-        textContent(containerText,{ key, code });
+        textService.textContent(containerText, { key, code });
 
     });
 
