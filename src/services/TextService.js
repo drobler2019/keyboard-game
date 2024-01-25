@@ -2,21 +2,27 @@ export class TextService {
 
     constructor(element) {
         this.count = 0;
-        element.innerHTML = 'Manifestó que el propósito debe ser unirse en un solo partido. Propuso que se haga una convocatoria al frente amplio en cada municipio, departamento "con todas las fuerzas democráticas que quieran'
+        this.countBarra = 0;
+        this.space = 0;
+        element.lastElementChild.innerHTML = 'En este tutorial vamos a ver.'
             .split("").map(word => `<span>${word}</span>`).join("");
     }
 
     textContent(element, { key, code }) {
-        //cargar la información de los textos
+
         if (this.validateText(code)) {
             if (code === 'Backspace') {
                 this.backspace(element, element.textContent);
+                if (this.countBarra > 0) {
+                    this.countBarra--;
+                    this.count--;
+                }
                 return;
             }
+            let textContentList = element.textContent.split("");
             let words = element.innerHTML.split("");
             let templateText = this.getTemplateText(words);
-            let letras = element.textContent.split("");
-            templateText = this.validateChar(letras, templateText, key);
+            templateText = this.validateCharacter(textContentList, templateText, key, code);
             element.innerHTML = templateText.join("");
 
         }
@@ -34,26 +40,58 @@ export class TextService {
         return templateText.split("_");
     }
 
-    validateCharacter(letras, templateText, key) {
+    validateCharacter(letras, templateText, key, code) {
         while (this.count < letras.length) {
-            let x = letras[this.count];
-            if (x === key) {
-                templateText[this.count] = `<span style="color: green">${x}</span>`;
+            let char = letras[this.count];
+            if (char === key) {
+                templateText[this.count] = `<span style="color: green">${char}</span>`;
+                this.space = 0;
             } else {
-                templateText[this.count] = `<span style="color: red">${x}</span>`;
+                if (char.trim() === '') {
+                    if (this.space < 10) {
+                        templateText[this.count] = `<span style="color: red" id="mal">${key}</span>`
+                            + templateText[this.count];
+                        this.countBarra++;
+                        this.space++;
+                        this.count++;
+                    }
+
+                    return templateText;
+                }
+                this.space = 0;
+                templateText[this.count] = `<span style="color: red">${char}</span>`;
             }
             this.count++;
+            if (this.validateText(code)) {
+                this.countBarra++;
+            }
             break;
         }
         return templateText;
     }
 
-    backspace(element, words) {
-        const w = words.split("");
-        if (w.lenght !== 0) {
-            w.pop();
-            element.textContent = '';
-            w.forEach(word => element.textContent += word);
+    backspace(element, textContent) {
+        const position = this.count === 0 ? this.count : this.count - 1;
+        const ultimaLetra = textContent.split("")[position];
+        const words = textContent.split(" ");
+        let textTemplate = element.innerHTML.split("");
+        let template = this.getTemplateText(textTemplate);
+        const wordsBadSpace = template.filter(te => te.search('mal') !== -1);
+        if (words.length !== 0) {
+            if (wordsBadSpace.length !== 0) {
+                if (this.countBarra > 0) {
+                    if (ultimaLetra.trim() == '') {
+                        return;
+                    }
+                    template.splice(this.countBarra - 1, 1);
+                    element.innerHTML = template.join("");
+                }
+                return;
+            }
+
+            template[position] = `<span>${ultimaLetra}</span>`;
+            element.innerHTML = template.join("");
+
         }
     }
 

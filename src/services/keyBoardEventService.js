@@ -1,4 +1,5 @@
 import { keys } from "../presentation/keyboard/keyboard";
+import { moverBarra } from "./MoverBarraService";
 import { TextService } from "./TextService";
 
 let keyboard = null;
@@ -14,6 +15,9 @@ export const keydownEvent = (element) => {
         textService = new TextService(containerText);
     }
 
+    
+    const barra = document.querySelector('.barra');
+
 
     document.addEventListener('keydown', (event) => {
 
@@ -27,8 +31,10 @@ export const keydownEvent = (element) => {
         if (!tecla) return;
         tecla.classList.add('presionar');
         document.addEventListener('keyup', () => tecla.classList.remove('presionar'));
-        textService.textContent(containerText, { key, code });
-
+        textService.textContent(containerText.lastElementChild, { key, code });
+        if (textService.validateText(code)) {
+            moverBarra(containerText.lastElementChild,  barra, textService.countBarra);
+        }
     });
 
 };
