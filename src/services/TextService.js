@@ -79,11 +79,10 @@ export class TextService {
         let template = this.getTemplateText(textTemplate);
         const wordsBadSpace = template.filter(te => te.search('mal') !== -1);
         if (words.length !== 0) {
+            console.log('aquí')
             if (wordsBadSpace.length !== 0) {
                 if (this.countBarra > 0) {
-                    if (ultimaLetra.trim() == '') {
-                        return;
-                    }
+
                     const lasTemplateText = template[position];
                     if (lasTemplateText.search('mal') !== -1) {
                         template.splice(this.countBarra - 1, 1);
@@ -93,6 +92,7 @@ export class TextService {
                         element.innerHTML = template.join("");
                     }
                 }
+                this.space = 0;
                 return;
             }
 
