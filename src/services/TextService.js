@@ -4,7 +4,7 @@ export class TextService {
         this.count = 0;
         this.countBarra = 0;
         this.space = 0;
-        element.lastElementChild.innerHTML = 'En este tutorial vamos a ver.'
+        element.lastElementChild.innerHTML = 'Cuadrícula de datos en memoria para un acceso rápido a datos de clave-valor, con escalabilidad y rendimiento máximos al proporcionar almacenamiento de datos de baja latencia en cluster, computación de cuadrícula políglota y transmisión de eventos asíncrona, con versiones Community Edition y Enterprise de código abierto.'
             .split("").map(word => `<span>${word}</span>`).join("");
     }
 
@@ -71,6 +71,7 @@ export class TextService {
     }
 
     backspace(element, textContent) {
+        //TODO: arreglar bug pendiente
         const position = this.count === 0 ? this.count : this.count - 1;
         const ultimaLetra = textContent.split("")[position];
         const words = textContent.split(" ");
@@ -83,8 +84,14 @@ export class TextService {
                     if (ultimaLetra.trim() == '') {
                         return;
                     }
-                    template.splice(this.countBarra - 1, 1);
-                    element.innerHTML = template.join("");
+                    const lasTemplateText = template[position];
+                    if (lasTemplateText.search('mal') !== -1) {
+                        template.splice(this.countBarra - 1, 1);
+                        element.innerHTML = template.join("");
+                    } else {
+                        template[position] = `<span>${ultimaLetra}</span>`;
+                        element.innerHTML = template.join("");
+                    }
                 }
                 return;
             }
