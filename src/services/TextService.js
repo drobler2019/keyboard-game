@@ -71,7 +71,6 @@ export class TextService {
     }
 
     backspace(element, textContent) {
-        //TODO: arreglar bug pendiente
         const position = this.count === 0 ? this.count : this.count - 1;
         const ultimaLetra = textContent.split("")[position];
         const words = textContent.split(" ");
