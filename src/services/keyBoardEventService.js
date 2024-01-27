@@ -15,7 +15,7 @@ export const keydownEvent = (element) => {
         textService = new TextService(containerText);
     }
 
-    
+
     const barra = document.querySelector('.barra');
 
 
@@ -33,7 +33,7 @@ export const keydownEvent = (element) => {
         document.addEventListener('keyup', () => tecla.classList.remove('presionar'));
         textService.textContent(containerText.lastElementChild, { key, code });
         if (textService.validateText(code)) {
-            moverBarra(containerText.lastElementChild,  barra, textService.countBarra);
+            moverBarra(containerText.lastElementChild, barra, textService.countBarra);
         }
     });
 
