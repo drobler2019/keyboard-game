@@ -72,10 +72,20 @@ export class TextService {
 
     backspace(element, textContent) {
         const position = this.count === 0 ? this.count : this.count - 1;
-        const ultimaLetra = textContent.split("")[position];
+        const lastLetter = textContent.split("")[position];
         const words = textContent.split(" ");
         let textTemplate = element.innerHTML.split("");
         let template = this.getTemplateText(textTemplate);
+
+        console.log(lastLetter);
+
+        if (lastLetter.trim() === '') {
+            const templateLastLetter = template[position - 1];
+            if (templateLastLetter) {
+                this.validateBackSpace(templateLastLetter);
+            }
+        }
+
         const wordsBadSpace = template.filter(te => te.search('mal') !== -1);
         if (words.length !== 0) {
             if (wordsBadSpace.length !== 0) {
@@ -86,7 +96,7 @@ export class TextService {
                         template.splice(this.countBarra - 1, 1);
                         element.innerHTML = template.join("");
                     } else {
-                        template[position] = `<span>${ultimaLetra}</span>`;
+                        template[position] = `<span>${lastLetter}</span>`;
                         element.innerHTML = template.join("");
                     }
                 }
@@ -94,9 +104,16 @@ export class TextService {
                 return;
             }
 
-            template[position] = `<span>${ultimaLetra}</span>`;
+            template[position] = `<span>${lastLetter}</span>`;
             element.innerHTML = template.join("");
 
+        }
+    }
+
+    validateBackSpace(templateLetters) {
+        if (templateLetters.search('mal') === -1) {
+            this.countBarra++;
+            this.count++;
         }
     }
 
