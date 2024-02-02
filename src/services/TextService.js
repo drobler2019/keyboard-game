@@ -77,8 +77,6 @@ export class TextService {
         let textTemplate = element.innerHTML.split("");
         let template = this.getTemplateText(textTemplate);
 
-        console.log(lastLetter);
-
         if (lastLetter.trim() === '') {
             const templateLastLetter = template[position - 1];
             if (templateLastLetter) {
