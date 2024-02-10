@@ -1,12 +1,15 @@
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@200&family=Inter:wght@500;700&family=Roboto+Mono:wght@100&family=Roboto+Slab:wght@400;900&display=swap");
+
 .container-text {
+  font-family: "IBM Plex Sans", sans-serif;
   block-size: 300px;
   margin-block-end: 30px;
   border-radius: 5px;
-  padding: 10px;
-  box-shadow: 2px 2px 10px 5px rgba(57, 116, 205, 0.5);
-  max-inline-size: 750px;
+  max-inline-size: 1200px;
   position: relative;
   font-size: 23px;
+  color: #646669;
+  font-weight: 700;
 }
 
 .capsLock {
@@ -35,15 +38,14 @@
 .barra {
   inline-size: 3px;
   block-size: 25px;
-  background-color: #368fe9;
+  background-color: #ffffff;
   position: absolute;
-  inset-block-start: 11px;
-  inset-inline-start: 10px;
+  inset-block-start: 13px;
   border-radius: 5px;
-  animation: .8s;
+  animation: 0.8s;
   animation-name: animacion;
   animation-iteration-count: infinite;
-  transition: inset-inline-start .1s ease;
+  transition: inset-inline-start 0.1s ease;
 }
 
 @keyframes animacion {

@@ -44,7 +44,7 @@ export class TextService {
         while (this.count < letras.length) {
             let char = letras[this.count];
             if (char === key) {
-                templateText[this.count] = `<span style="color: green">${char}</span>`;
+                templateText[this.count] = `<span style="color: #ffffff">${char}</span>`;
                 this.space = 0;
             } else {
                 if (char.trim() === '') {

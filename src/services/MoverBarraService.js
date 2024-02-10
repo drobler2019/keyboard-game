@@ -1,6 +1,7 @@
-const POSITION_INIT_ELEMENT = 10;
+const POSITION_INIT_ELEMENT = 15;
 const VALUE_POSITION_BARRA = 2;
 const BEFORE_ELEMENT = 1;
+const POSITION_TOP_INIT = 4;
 
 export const moverBarra = ({ children }, count) => {
 
@@ -10,7 +11,7 @@ export const moverBarra = ({ children }, count) => {
     if (span) {
         const { offsetLeft, offsetTop } = span;
         barra.style.insetInlineStart = `${offsetLeft - VALUE_POSITION_BARRA}px`;
-        barra.style.insetBlockStart = `${offsetTop}px`;
+        barra.style.insetBlockStart = `${offsetTop + POSITION_TOP_INIT}px`;
         return;
     }
 
