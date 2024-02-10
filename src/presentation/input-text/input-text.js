@@ -11,3 +11,10 @@ function template() {
                </div>
           </div>`;
 }
+
+export function toggleCapsLock(code) {
+    const capsLock = document.querySelector('.capsLock');
+    if (code === 'CapsLock') {
+        capsLock.classList.toggle('mostrar');
+    }
+}

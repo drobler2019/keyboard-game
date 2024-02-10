@@ -1,3 +1,4 @@
+import { toggleCapsLock } from "../presentation/input-text/input-text";
 import { keys } from "../presentation/keyboard/keyboard";
 import { moverBarra } from "./MoverBarraService";
 import { TextService } from "./TextService";
@@ -8,33 +9,26 @@ let textService = null;
 export const keydownEvent = (element) => {
 
     keyboard = element.querySelector('.keyboard');
-    const capsLock = document.querySelector('.capsLock');
-    const containerText = capsLock.nextElementSibling;
+    const containerText = document.querySelector('.container-text');
 
     if (!textService) {
         textService = new TextService(containerText);
     }
 
+    const { lastElementChild } = containerText;
 
-    const barra = document.querySelector('.barra');
+    document.addEventListener('keydown', ({ key, code }) => {
 
-
-    document.addEventListener('keydown', (event) => {
-
-        const { key, code } = event;
-
-        if (code === 'CapsLock') {
-            capsLock.classList.toggle('mostrar');
-        }
-
+        toggleCapsLock(code);
         const tecla = keys.find(k => k.id === code);
         if (!tecla) return;
         tecla.classList.add('presionar');
         document.addEventListener('keyup', () => tecla.classList.remove('presionar'));
-        textService.textContent(containerText.lastElementChild, { key, code });
+        textService.textContent(lastElementChild, { key, code });
         if (textService.validateText(code)) {
-            moverBarra(containerText.lastElementChild, barra, textService.countBarra);
+            moverBarra(lastElementChild, textService.countBarra);
         }
+
     });
 
 };
