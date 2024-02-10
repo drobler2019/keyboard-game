@@ -9,5 +9,5 @@ import { renderKeyBoard } from "./presentation/keyboard/keyboard";
 
 export const app = (element) => {
     renderInputText(element);
-    element.appendChild(renderKeyBoard());
+    renderKeyBoard(element);
 };

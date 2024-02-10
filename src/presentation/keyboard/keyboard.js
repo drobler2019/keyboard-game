@@ -5,26 +5,16 @@ import html from './keyboard.html?raw';
 let templateKeyBoard = null;
 export let keys = [];
 
-export const renderKeyBoard = () => {
+export const renderKeyBoard = (element) => {
     templateKeyBoard = document.createElement('section');
     templateKeyBoard.className = 'keyboard-container';
     templateKeyBoard.innerHTML = html;
     keydownEvent(templateKeyBoard);
-    getKeys(templateKeyBoard);
-    return templateKeyBoard;
+    pushKeysElement(templateKeyBoard);
+    element.appendChild(templateKeyBoard);
 }
 
-
-function getKeys(templateKeyBoard) {
-    const { firstElementChild: { children } } = templateKeyBoard;
-    [...children]
-        .forEach(element => {
-            [...element.children].forEach(key => {
-                if (key.nodeName === 'SECTION') {
-                    [...key.children].forEach(k => keys.push(k));
-                    return;
-                }
-                keys.push(key);
-            })
-        });
+function pushKeysElement(templateKeyBoard) {
+    const sectionElements = templateKeyBoard.querySelectorAll('.keyboard section');
+    sectionElements.forEach(({ children }) => [...children].forEach(divElement => keys.push(divElement)));
 }

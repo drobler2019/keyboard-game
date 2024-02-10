@@ -11,3 +11,7 @@ body {
   display: grid;
   place-items: center;
 }
+
+:root {
+  color-scheme: dark;
+}
