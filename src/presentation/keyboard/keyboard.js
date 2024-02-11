@@ -1,8 +1,8 @@
 import './keyboard.css';
 import html from './keyboard.html?raw';
-import { TextService } from './../../services/TextService.js';
-import { toggleCapsLock } from "../../presentation/input-text/input-text.js";
-import { moverBarra } from "../../presentation/input-text/input-text.js";
+import { TextService } from '../../services/TextService.js';
+import { toggleCapsLock } from "../input-text/inputContainerText.js";
+import { moverBarra } from "../input-text/inputContainerText.js";
 
 export let keys = [];
 let keyboard = null;

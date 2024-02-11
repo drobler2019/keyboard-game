@@ -3,7 +3,7 @@
  * @param {HTMLDivElement} element 
  */
 
-import { renderInputText } from "./presentation/input-text/input-text";
+import { renderInputText } from "./presentation/input-text/inputContainerText";
 import { renderKeyBoard } from "./presentation/keyboard/keyboard";
 
 
