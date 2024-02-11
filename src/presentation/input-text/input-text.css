@@ -2,7 +2,6 @@
 
 .container-text {
   font-family: "IBM Plex Sans", sans-serif;
-  block-size: 300px;
   margin-block-end: 30px;
   border-radius: 5px;
   max-inline-size: 1200px;
@@ -13,8 +12,8 @@
 }
 
 .capsLock {
-  background: #183153;
-  inline-size: 30%;
+  background: #464646;
+  inline-size: 10%;
   block-size: 60px;
   margin: auto;
   border-radius: 5px;
@@ -24,7 +23,6 @@
   text-align: center;
   font-weight: bold;
   margin-block-end: 30px;
-  border: thin solid #368fe9;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -40,7 +38,7 @@
   block-size: 25px;
   background-color: #ffffff;
   position: absolute;
-  inset-block-start: 13px;
+  inset-block-start: 4px;
   border-radius: 5px;
   animation: 0.8s;
   animation-name: animacion;

@@ -1,6 +1,13 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@500;700&family=Roboto+Mono:wght@100&family=Roboto+Slab:wght@400;900&display=swap");
 
-.keyboard-container {
+.keyboard-container,
+#Space,
+#Backspace,
+#Enter,
+#Tab,
+#CapsLock,
+#ShiftLeft,
+#ShiftRight {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -11,28 +18,26 @@
   font-size: 17px;
   display: flex;
   flex-direction: column;
-  max-inline-size: 880px;
-  gap: 5px;
+  inline-size: 850px;
+  gap: 8px;
+  background-color: #989898;
   padding: 10px;
-  & div {
-    font-weight: bold;
-    border-radius: 5px;
-    padding: 10px;
-    min-inline-size: 55px;
-    block-size: 55px;
-    background-color: #646669;
-    color: black;
-  }
+  border-radius: 10px;
+}
+
+.tecla {
+  font-weight: bold;
+  border-radius: 5px;
+  padding: 10px;
+  min-inline-size: 55px;
+  block-size: 55px;
+  background-color: #646669;
+  color: black;
 }
 
 .keyboard section {
   display: flex;
-  gap: 5px;
-}
-
-.keyboard main section:nth-child(2) {
-  grid-column: 1 / 3;
-  grid-row: 1 / 1;
+  gap: 8px;
 }
 
 article {
@@ -42,49 +47,62 @@ article {
 }
 
 .keyboard > section:last-child {
-  & div {
+  & > div {
     inline-size: 50%;
     margin: auto;
   }
-}
-
-#Enter {
-  display: flex;
-  justify-content: center;
-  align-items: end;
-  border-block-end: none;
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
 }
 
 .green {
   background: green;
 }
 
-#ShiftRight,
-#Backspace {
+#ShiftLeft,
+#Backspace,
+#Tab {
   flex: 1;
 }
 
-#CapsLock {
-  inline-size: 100px;
-}
-
-#Space {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+#CapsLock,
+#Enter {
+  flex: 1;
 }
 
 #Tab {
   inline-size: 65px;
 }
 
-div.presionar {
-  background-color: #ffffff;
-  outline: thick solid #3d3d3d;
+.presionar {
+  background-color: #dcdcdc;
+  outline: thick solid #292929;
 }
 
 .teclas-numericas {
   justify-content: space-around;
+}
+
+/***ICONS**/
+.fa-delete-left,
+#Enter,
+#Tab,
+#CapsLock,
+#ShiftLeft,
+#ShiftRight {
+  font-size: 20px;
+}
+
+.fa-right-long::after {
+  content: "";
+  inline-size: 6px;
+  block-size: 20px;
+  background-color: black;
+  position: absolute;
+  border-radius: 5px;
+}
+
+.btn-space {
+  inline-size: 20%;
+  block-size: 20%;
+  background-color: black;
+  border-radius: 5px;
 }
